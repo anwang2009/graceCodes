@@ -12,13 +12,11 @@ def add(x: int, y: int):
 
 
 def times_two(x: int):
-    # TODO
-    raise NotImplementedError()
+    return x * 2
 
 
 def multiply(x: int, y: int):
-    # TODO
-    raise NotImplementedError()
+    return x * y
 
 
 def power2(x: int):
@@ -26,8 +24,7 @@ def power2(x: int):
 
 
 def power3(x: int):
-    # TODO
-    raise NotImplementedError()
+    return x ** 3
 
 
 if __name__ == "__main__":
