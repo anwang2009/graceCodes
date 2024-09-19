@@ -16,7 +16,7 @@ items = {
     "1110": "bowling ball",
     "1101": "circular dining table",
     "1100": "earth",
-    "1011": "cup",
+    "1011": "Plastic cup w/o anything in it",
     "1010": "frisbee",
     "1001": "lightbulb",
     "1000": "bubble",
@@ -27,7 +27,7 @@ items = {
     "0011": "chopsticks",
     "0010": "pocketknife",
     "0001": "pillow",
-    "0000": "cloud", 
+    "0000": "square cloud", 
 }
 
 
@@ -49,7 +49,21 @@ def run_four_questions():
     else:
         raise ValueError(f"Expected y/n but got {answer}")
 
-    # TODO: Finish constructing the final key!
+    answer = input("Do you hold it when you use it? (y/n): ")
+    if answer == "y":
+        final_key += "1"
+    elif answer == "n":
+        final_key += "0"
+    else:
+        raise ValueError(f"Expected y/n but got {answer}")
+    
+    answer = input("Is it a daily household item? (y/n): ")
+    if answer == "y":
+        final_key += "1"
+    elif answer == "n":
+        final_key += "0"
+    else:
+        raise ValueError(f"Expected y/n but got {answer}")
 
     final_answer = items[final_key]
     print(f"Your item is {final_answer}!")
