@@ -22,7 +22,7 @@ class Grid:
         """
         Gets the piece at location loc.
         """
-        pass
+        return self.grid[loc.row][loc.col]
 
     def set(self, loc: Location, piece: Piece):
         """
@@ -38,7 +38,21 @@ class Grid:
 
         Note, if two pieces can move to the same spot, the file takes
         precedence over the rank.
+
+        For now, the fully qualified move must be given. 
+        Examples: Qh4e1, d4d5
+
+        TODO: Add other valid moves
         """
+
+        # ASSUME FULLY QUALIFIED MOVE IS GIVEN
+        dest_loc = Location(command[-2], int(command[-1]))
+        src_loc = Location(command[-4], int(command[-3]))
+        piece = self.get(src_loc)
+        self.set(dest_loc, piece)
+        self.set(src_loc, None)
+        
+        '''
         if "x" in command:
             # Piece takes piece
             src, dest = command.split("x")
@@ -47,6 +61,7 @@ class Grid:
             # Get source piece somehow 
         else:
             pass
+        '''
 
     def _load_pieces(self, pieces_file: str):
         """
@@ -66,17 +81,16 @@ class Grid:
 
         for i in range(7, -1, -1):
             rows.append(   "   --- --- --- --- --- --- --- ---")
-            next_row = f"{i} |   |   |   |   |   |   |   |   | {i}"
-            next_row = f"{i} | "
+            next_row = f"{i+1} | "
             for j in range(8):
-                next_piece = self.grid[i][j]
+                next_piece = self.grid[7-i][j]
                 if next_piece is None:
                     next_row += "  | "
                 else:
                     piece_rep = next_piece.get_pretty()
                     next_row += f"{piece_rep} | "
 
-            next_row += str(i)
+            next_row += str(i+1)
             rows.append(next_row)
 
         rows.append(   "   --- --- --- --- --- --- --- ---")

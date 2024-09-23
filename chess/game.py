@@ -12,4 +12,8 @@ if __name__ == "__main__":
         next_move = input(f"\033[0;{side.value}mNext move:\033[0;37;0m ") 
         g.move(next_move)
         g.display()
-        sys.exit()
+
+        if side == Side.WHITE:
+            side = Side.BLACK
+        elif side == Side.BLACK:
+            side = Side.WHITE
