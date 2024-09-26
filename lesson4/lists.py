@@ -7,7 +7,7 @@ def print_even_index(stuff: list):
 
     for i in range(0, len(stuff), 2):
         if i + 2 < len(stuff):
-            print(str(stuff[i]) + ",", end="")
+            print(str(stuff[i]) + ",", end=" ")
         else:
             print(stuff[i], end="")
     
@@ -17,15 +17,22 @@ def print_even_index(stuff: list):
 def my_print(stuff: list):
     print("[", end='')
     # TODO: print the list of "stuff" with semicolons instead of commas
-
+    for i in range(0, len(stuff)):
+        if i + 1 < len(stuff):
+            print(str(stuff[i]) + ";", end=" ")
+        else:
+            print(stuff[i], end="")
     print("]", end='')
 
 
 def reverse(stuff: list):
     # TODO: return a list that has all the elements in `stuff`
     # in reverse order
-    raise NotImplementedError()
-
+    result = []
+    for i in range(len(stuff) - 1, -1, -1):
+        item = stuff
+        result.append(item[i])
+    return result
 
 def sum(stuff: list):
     result = 0
@@ -37,11 +44,15 @@ def sum(stuff: list):
 
 def multiply(stuff: list):
     # TODO: implement this
-    raise NotImplementedError()
+    result = 1
+    for num in stuff:
+        result *= num
+
+    return result
 
 
 def main():
-    nums = [1, 2, 3, 4]
+    nums = [2, 3, 4, 5, 6, 10]
 
     # add and multiply nums
     print("sum of nums is", sum(nums))
