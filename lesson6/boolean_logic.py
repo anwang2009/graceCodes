@@ -10,7 +10,7 @@ def check(expression_str, actual_result, expected):
     else:
         prefix = "HMM TRY AGAIN!"
 
-    print(f"{prefix} {message}")
+    print(prefix, message)
 
 
 def run_boolean_exprs():
@@ -20,12 +20,12 @@ def run_boolean_exprs():
     s = "hi grace"
 
     check("x < 14",                        x < 14,                        True)
-    check("x % 2 < 1",                     x % 2 < 1,                     """TODO""")
-    check("x < y or x < z",                x < y or x < z,                """TODO""")
-    check("y < x and x < z",               y < x and x < z,               """TODO""")
-    check("z / x < x / y * x",             z / x < x / y * x,             """TODO""")
-    check("len(s) == y",                   len(s) == y,                   """TODO""")
-    check('s == "hi grace" or x * y != z', s == "hi grace" or x * y != z, """TODO""")
+    check("x % 2 < 1",                     x % 2 < 1,                     True)
+    check("x < y or x < z",                x < y or x < z,                True)
+    check("y < x and x < z",               y < x and x < z,               True)
+    check("z / x < x / y * x",             z / x < x / y * x,             True)
+    check("len(s) == y",                   len(s) == y,                   False)
+    check('s == "hi grace" or x * y != z', s == "hi grace" or x * y != z, True)
 
 
 
@@ -35,32 +35,42 @@ def foo(x, y):
     Is the assertion z == 0 at each of the points always, never, or sometimes True?
     Write a test case demonstrating full coverage of all the possible code branches.
 
-    A:
-    B:
-    C:
-    D:
-    E:
+    A: Always true, because nothing happens to z, nothing interacts or checks z. Z is simply 0 according to line 46
+    B: SOMETIMES, because repeats.
+    C: Never true, because after line 51, z is not 0 anymore, but rather 1
+    D: Never true, because after line 51, z is not 0 anymore, but rather 1
+    E: SOMETIMES, because if we skip all the "if-else," then we show up with z=0, and not a z+=1 with the ifs
     """
 
 
     z = 0
 
-    # Point A
+    print("a", z)# Point A
     while x != y:
-        # Point B
+        print("b", z)# Point B
         z += 1
 
         if (x > y):
-            # Point C
-            x = x / 10;
+            print("c", z)# Point C
+            x = x // 10
         else:
-            # Point D
-            y = y / 10;
+            print("d", z)# Point D
+            y = y // 10
 
-    # Point E
-    print(x + " " + y + " " + z)
+    print("E", z)# Point E
+    print(str(x) + " " + str(y) + " " + str(z))
 
 
 if __name__ == "__main__":
     run_boolean_exprs()
-
+    foo(1, 0)
+    print("test")
+    foo(3, 0)
+    print("test")
+    foo(10, 0)
+    print("test")
+    foo(0, 1)
+    print("test")
+    foo(0, 3)
+    print("test")
+    foo(0, 0)
