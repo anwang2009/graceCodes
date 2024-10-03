@@ -22,6 +22,7 @@ def run_boolean_exprs():
     check("x < 14",                        x < 14,                        True)
     check("x % 2 < 1",                     x % 2 < 1,                     """TODO""")
     check("x < y or x < z",                x < y or x < z,                """TODO""")
+    check("y < x and x < z",               y < x and x < z,               """TODO""")
     check("z / x < x / y * x",             z / x < x / y * x,             """TODO""")
     check("len(s) == y",                   len(s) == y,                   """TODO""")
     check('s == "hi grace" or x * y != z', s == "hi grace" or x * y != z, """TODO""")
