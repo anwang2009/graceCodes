@@ -42,27 +42,19 @@ class Grid:
         For now, the fully qualified move must be given. 
         Examples: Qh4e1, d4d5
 
-        TODO: Add other valid moves
+        TODO (eventually): Add other valid moves
         """
 
         # ASSUME FULLY QUALIFIED MOVE IS GIVEN
         dest_loc = Location(command[-2], int(command[-1]))
         src_loc = Location(command[-4], int(command[-3]))
         piece = self.get(src_loc)
+
+        # TODO: Check if the destination is valid for the piece being moved
+
         self.set(dest_loc, piece)
         self.set(src_loc, None)
         
-        '''
-        if "x" in command:
-            # Piece takes piece
-            src, dest = command.split("x")
-            dest_loc = Location(dest[0], dest[1])
-           
-            # Get source piece somehow 
-        else:
-            pass
-        '''
-
     def _load_pieces(self, pieces_file: str):
         """
         Loads pieces specified in the `pieces_file` at their
