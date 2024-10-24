@@ -1,19 +1,13 @@
 # Problem Set 2, hangman.py
-# Name: 
-# Collaborators:
-# Time spent:
+# Name: An and Grace
+# Collaborators: Us
+# Time spent: ~2.5 hours
 
 # Hangman Game
 # -----------------------------------
-# Helper code
-# You don't need to understand this helper code,
-# but you will have to know how to use the functions
-# (so be sure to read the docstrings!)
 import random
 import string
-
 WORDLIST_FILENAME = "words.txt"
-
 
 def load_words():
     """
@@ -33,7 +27,6 @@ def load_words():
     return wordlist
 
 
-
 def choose_word(wordlist):
     """
     wordlist (list): list of words (strings)
@@ -42,14 +35,7 @@ def choose_word(wordlist):
     """
     return random.choice(wordlist)
 
-# end of helper code
-
-# -----------------------------------
-
-# Load the list of words into the variable wordlist
-# so that it can be accessed from anywhere in the program
 wordlist = load_words()
-
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
@@ -60,9 +46,10 @@ def is_word_guessed(secret_word, letters_guessed):
     returns: boolean, True if all the letters of secret_word are in letters_guessed;
       False otherwise
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-
+    for i in range(len(secret_word)):
+      if secret_word[i] not in letters_guessed:
+         return False
+    return True
 
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -72,9 +59,15 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-
+    result = ""
+    for i in range(len(secret_word)):
+      if secret_word[i] in letters_guessed:
+        result += secret_word[i]
+      else:
+        result += "_"
+    print(result)
+    return result
+        
 
 
 def get_available_letters(letters_guessed):
@@ -83,10 +76,13 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-    
-    
+    give = ""
+    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    for i in range(26):
+       if alphabet[i] not in letters_guessed:
+          give += alphabet[i]
+    return give
+          
 def hangman(secret_word):
     '''
     secret_word: string, the secret word to guess.
@@ -112,14 +108,26 @@ def hangman(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    guess = 6
+    print("Secret word length:", len(secret_word))
+    print("You have 6 guesses!")
+    letters_guessed = []
+    while guess > 0:
+      letter = input("Please guess a letter:")
+      letters_guessed.append(letter)
+      if letter in secret_word:
+        print("Great! :) Your current state of being of the word is", get_guessed_word(secret_word, letters_guessed))
+        if is_word_guessed(secret_word, letters_guessed):
+           print("Great job! You are amazing.")
+           break
+      else:
+        print("Oops! :( Your current state of being of the word is", get_guessed_word(secret_word, letters_guessed))
+        guess -= 1
 
+      print("Here are the available letters:", get_available_letters(letters_guessed))
+      print("You have", guess, "guesses left!")
 
+    print("GAME OVER!")        
 if __name__ == "__main__":
-    #(hint: you might want to pick your own
-    # secret_word while you're doing your own testing)
-
     secret_word = choose_word(wordlist)
     hangman(secret_word)
-
