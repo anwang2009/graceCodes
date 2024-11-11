@@ -33,9 +33,9 @@ if __name__ == "__main__":
     except Exception as e:
         print("Caught error", e)
     fibonacci(10)
-    x = 5
-    z = x
-    y = 6
-    x = y
-    y = z
-    print(x, y)
+   #  x = 5
+   #  z = x
+   #  y = 6
+   #  x = y
+   #  y = z
+   #  print(x, y)
